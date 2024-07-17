@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PayPal and Paysafe Generator</title>
+  <style>
+    body {
+      background-image: url("background.png");
+      background-position: -200px, 50px;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .logos {
+      display: flex;  /* Make the logos container a flexbox */
+      justify-content: center;  /* Align logos horizontally in center */
+      align-items: center;  /* Align logos vertically in center */
+    }
+
+    .logos img {
+      margin: 0 10px;  /* Adjust margin between logos */
+    }
+
+    .buttons {
+      margin-top: 40px;
+    }
+
+    button {
+      background-color: #ffc107;
+      border: none;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+
+    .result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logos">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" width="200">
+      <img src="psf-removebg-preview.png" alt="Paysafe" width="200">
+    </div>
+    <h1>Let's Start</h1>
+    <div class="buttons">
+      <button onclick="generatePayPal()">Start Genning PayPal</button>
+      <button onclick="generatePaysafe()">Start Genning Paysafe</button>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function generatePayPal() {
+      const email = generateEmail();
+      const password = generatePassword();
+      document.getElementById('result').innerHTML = `PayPal Email: ${email}<br>PayPal Password: ${password}`;
+    }
+
+    function generatePaysafe() {
+      const code = generatePaysafeCode();
+      document.getElementById('result').innerHTML = `Paysafe Code: ${code}`;
+    }
+
+    function generateEmail() {
+      const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+      let email = '';
+      for (let i = 0; i < 10; i++) {
+        email += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return email + '@gmail.com';
+    }
+
+    function generatePassword() {
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+      let password = '';
+      for (let i = 0; i < 12; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return password;
+    }
+
+    function generatePaysafeCode() {
+      let code = '91';
+      for (let i = 0; i < 14; i++) {
+        code += Math.floor(Math.random() * 10);
+      }
+      return code;
+    }
+  </script>
+</body>
+</html>
